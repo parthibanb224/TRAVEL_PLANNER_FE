@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import FrontPage from './Pages/FrontPage';
+import Dashboard from './Pages/Dashboard';
+import ApplicationLayout from './Pages/ApplicationLayout';
+import TripDetailPage from './Pages/TripDetailPage';
+import DestinationPage from './Pages/DestinationPage';
+import ResetPasswordForm from './components/ResetPasswordForm';
+import { useUser } from './context/Users.context';
+import { useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 
 function App() {
+
+  const { isLoggedin, setIsLoggedin, setSigninUser } = useUser();
+  useEffect(() => {
+    let token = sessionStorage.getItem("Authorization");
+    if (token) {
+      var decoded = jwtDecode(token);
+      setSigninUser(decoded.name);
+      setIsLoggedin(true);
+    }
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <Routes>
+        {!isLoggedin ? (
+          <>
+            <Route path='/' Component={FrontPage}></Route>
+            <Route path='/ResetPassword/:token' Component={ResetPasswordForm}></Route>
+          </>
+        ) : (
+          <Route path='/Layout' Component={ApplicationLayout}>
+            <Route path='dashboard' Component={Dashboard}></Route>
+            <Route path='trip' Component={TripDetailPage}></Route>
+            <Route path='destination' Component={DestinationPage}></Route>
+          </Route>
+        )}
+      </Routes>
     </div>
   );
 }
