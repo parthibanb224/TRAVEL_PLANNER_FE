@@ -7,13 +7,11 @@ function Sidebar() {
   const {signinUser, handleLogout,selectedPhoto} = useUser();
   return (
     <aside className="w-64 bg-indigo-900 text-white h-screen fixed top-0 left-0 overflow-y-auto">
-      {/* Logo */}
       <div className="p-4 text-center">
         <h1 className="text-2xl font-semibold">Travel Planner</h1>
       </div>
       <hr className="border-t border-indigo-800 my-4" />
 
-      {/* Navigation */}
       <nav className="mt-2">
         <ul>
           <li>
@@ -68,7 +66,6 @@ function Sidebar() {
       </nav>
       <hr className="border-t border-indigo-800 my-4" />
 
-      {/* Profile Info */}
       <div className="p-4 absolute bottom-9 text-center">
         <div className="flex items-center mb-4">
           <img

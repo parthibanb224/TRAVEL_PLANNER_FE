@@ -222,20 +222,16 @@ function DestinationPage() {
         <div className={`mt-8 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
             <h1 className="text-3xl font-semibold mb-4">Nearby Destinations</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* Display each destination as a card */}
                 {places.map((place) => (
                     <div key={place.id} className="bg-white rounded-lg shadow p-6">
-                        {/* Image */}
                         <img
                             src={place.imageURL}
                             alt={place.name}
                             className="w-full h-40 object-cover rounded-lg mb-4"
                         />
-                        {/* Destination details */}
                         <h2 className="text-xl font-semibold mb-2">{place.name}</h2>
                         <p className="text-gray-600">{place.vicinity}</p>
                         <p className="text-gray-600">Rating: {place.rating}</p>
-                        {/* Add a button to select as a favorite */}
                         <button
                             onClick={(e) => handleSelectFavorite(place,e)}
                             className={`${selectedFavorites.some((favorite) => favorite.place_id === place.place_id)

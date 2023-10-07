@@ -215,9 +215,6 @@ export default function UsersContextProvider({ children }) {
         const file = e.target.files[0];
         setImageFile(URL.createObjectURL(file));
         if (file) {
-            // Upload the image and get its URL (you need to implement this part)
-            // Once you have the image URL, update the newTripData
-            // For now, you can store the image file in newTripData for preview:
             setNewTripData({ ...newTripData, imageURL: URL.createObjectURL(file) });
         }
     };
@@ -274,11 +271,7 @@ export default function UsersContextProvider({ children }) {
             .catch(err => {
                 console.log(err)
             })
-        // Update the edited trip in the list
         if (imageFile) {
-            // Upload the image and get its URL (you need to implement this part)
-            // Once you have the image URL, update the newTripData
-            // For now, you can store the image file in newTripData for preview:
             setNewTripData({ ...newTripData, imageURL: URL.createObjectURL(imageFile) });
         }
         const updatedTrips = trips.map((trip) =>
